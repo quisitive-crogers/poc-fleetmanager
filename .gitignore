@@ -1,0 +1,27 @@
+# .NET Build Artifacts
+bin/
+obj/
+*.csproj.user
+*.sln.user
+
+# Visual Studio / VSCode
+.vscode/
+.vs/
+*.suo
+*.user
+
+# MAUI-specific
+*.apk
+*.aab
+*.appx
+*.appxbundle
+*.msix
+*.msixbundle
+
+# Temporary Files
+*.tmp
+*.log
+
+# Secrets
+appsettings.*.json
+backupSettings.json

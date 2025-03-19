@@ -1,0 +1,55 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.35906.104
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POC.FleetManager.Loader", "POC.FleetManager.Loader\POC.FleetManager.Loader.csproj", "{817838E5-3A52-4DA8-B4B9-B3B07D9B98D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POC.FleetManager.Common", "POC.FleetManager.Common\POC.FleetManager.Common.csproj", "{2B8D317F-4C88-4297-81C5-15E31A9DB851}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POC.FleetManager.Extensions.DriverRegistration", "POC.FleetManager.Extensions.DriverRegistration\POC.FleetManager.Extensions.DriverRegistration.csproj", "{90C93569-32A9-45C4-A938-D017BEBE4B06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POC.FleetManager.Extensions.VehicleRegistration", "POC.FleetManager.Extensions.VehicleRegistration\POC.FleetManager.Extensions.VehicleRegistration.csproj", "{5D5EDA9C-FCDF-4D80-90C6-8273500124D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POC.FleetManager.Extensions.VehicleReservation", "POC.FleetManager.Extensions.VehicleReservation\POC.FleetManager.Extensions.VehicleReservation.csproj", "{D43F298A-9A26-4CF3-991B-4D935D04F18F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POC.FleetManager.ManagementAPI", "POC.FleetManager.ManagementAPI\POC.FleetManager.ManagementAPI.csproj", "{CE29B9B5-0145-413F-A618-1E1C9BED0621}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{817838E5-3A52-4DA8-B4B9-B3B07D9B98D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{817838E5-3A52-4DA8-B4B9-B3B07D9B98D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{817838E5-3A52-4DA8-B4B9-B3B07D9B98D8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{817838E5-3A52-4DA8-B4B9-B3B07D9B98D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{817838E5-3A52-4DA8-B4B9-B3B07D9B98D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B8D317F-4C88-4297-81C5-15E31A9DB851}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B8D317F-4C88-4297-81C5-15E31A9DB851}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B8D317F-4C88-4297-81C5-15E31A9DB851}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B8D317F-4C88-4297-81C5-15E31A9DB851}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90C93569-32A9-45C4-A938-D017BEBE4B06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90C93569-32A9-45C4-A938-D017BEBE4B06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90C93569-32A9-45C4-A938-D017BEBE4B06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90C93569-32A9-45C4-A938-D017BEBE4B06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D5EDA9C-FCDF-4D80-90C6-8273500124D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D5EDA9C-FCDF-4D80-90C6-8273500124D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D5EDA9C-FCDF-4D80-90C6-8273500124D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D5EDA9C-FCDF-4D80-90C6-8273500124D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D43F298A-9A26-4CF3-991B-4D935D04F18F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D43F298A-9A26-4CF3-991B-4D935D04F18F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D43F298A-9A26-4CF3-991B-4D935D04F18F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D43F298A-9A26-4CF3-991B-4D935D04F18F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE29B9B5-0145-413F-A618-1E1C9BED0621}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE29B9B5-0145-413F-A618-1E1C9BED0621}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE29B9B5-0145-413F-A618-1E1C9BED0621}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE29B9B5-0145-413F-A618-1E1C9BED0621}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CE195F92-1CFC-43D1-A3D5-FDC4EA48B4A2}
+	EndGlobalSection
+EndGlobal
