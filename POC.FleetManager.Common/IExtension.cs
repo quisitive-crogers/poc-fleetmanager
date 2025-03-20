@@ -7,8 +7,7 @@ namespace POC.FleetManager.Common
     {
         string Name { get; }
         string Version { get; }
-        Task Initialize(IConfiguration configuration, ILogger<IExtension> logger);
-
+        Task Initialize();
         Task Run();
     }
 }

@@ -1,0 +1,6 @@
+CREATE TABLE Reservations (
+    Id NVARCHAR(50) PRIMARY KEY,
+    VehicleId NVARCHAR(50) NOT NULL,
+    DriverId NVARCHAR(50) NOT NULL,
+    ReservationDate DATETIME NOT NULL
+);

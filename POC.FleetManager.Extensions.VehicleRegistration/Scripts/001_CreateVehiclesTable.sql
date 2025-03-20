@@ -1,0 +1,4 @@
+CREATE TABLE Vehicles (
+    Id NVARCHAR(50) PRIMARY KEY,
+    Model NVARCHAR(100) NOT NULL
+);

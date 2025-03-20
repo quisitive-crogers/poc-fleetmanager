@@ -1,4 +1,4 @@
-namespace POC.FleetManager.Loader
+namespace POC.FleetManager.Common
 {
     public class AzureAppConfigSettings
     {

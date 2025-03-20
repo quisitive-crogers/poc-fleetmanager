@@ -1,0 +1,10 @@
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="POC.FleetManager.Extensions.VehicleRegistration.VehicleRegistrationView">
+    <VerticalStackLayout Padding="30">
+        <Label Text="Vehicle Registration" FontSize="Title" />
+        <Entry Placeholder="Vehicle ID" />
+        <Entry Placeholder="Model" />
+        <Button Text="Register Vehicle" />
+    </VerticalStackLayout>
+</ContentView>

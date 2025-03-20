@@ -2,11 +2,25 @@ namespace POC.FleetManager.Common
 {
     public class EventAggregator
     {
-        private readonly List<Action<object>> _handlers = new();
+        private readonly Dictionary<string, List<Action<EventData>>> subscribers = [];
 
-        public void Subscribe(Action<object> handler) => _handlers.Add(handler);
-        public void Publish(object eventData) => _handlers.ForEach(h => h(eventData));
+        public void Subscribe(string type, Action<EventData> handler)
+        {
+            var hasHandlers = subscribers.TryGetValue(type, out List<Action<EventData>>? handlers);
+
+            if (!hasHandlers)
+            {
+                subscribers.Add(type, []);
+                handlers = [];
+            }
+
+            handlers!.Add(handler);
+        }
+
+        public void Publish(EventData eventData)
+        {
+            if(subscribers.TryGetValue(eventData.EventType, out List<Action<EventData>>? handlers))
+                            handlers.ForEach(h => h(eventData));
+        }
     }
-
-    public record FleetEvent(string Message);
 }

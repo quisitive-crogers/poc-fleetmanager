@@ -60,15 +60,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Remove="SplashScreen.xaml.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <MauiXaml Remove="SplashScreen.xaml" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Include="SplashScreen.xaml.cs" />
 	</ItemGroup>
 
 	<ItemGroup>

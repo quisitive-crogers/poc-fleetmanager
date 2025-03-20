@@ -4,44 +4,49 @@ using Microsoft.Extensions.Logging;
 
 namespace POC.FleetManager.Loader
 {
-    public class AuthService
+    public class AuthService(EntraIdSettings settings, ILogger<AuthService> logger)
     {
-        private readonly IPublicClientApplication _app;
-        private readonly ILogger<AuthService> _logger;
-
-        public AuthService(EntraIdSettings settings, ILogger<AuthService> logger)
-        {
-            _logger = logger;
-            _app = PublicClientApplicationBuilder.Create(settings.ClientId)
+        private readonly IPublicClientApplication _app = PublicClientApplicationBuilder.Create(settings.ClientId)
                 .WithAuthority(settings.Authority)
                 .WithDefaultRedirectUri()
                 .Build();
-        }
+        private string? _accessToken;
 
         public async Task<bool> AuthenticateAsync()
         {
             try
             {
-                var scopes = new[] { "User.Read" };
+                var scopes = settings.Scopes;
                 var accounts = await _app.GetAccountsAsync();
                 var account = accounts.FirstOrDefault();
 
                 if (account != null)
                 {
                     var result = await _app.AcquireTokenSilent(scopes, account).ExecuteAsync();
-                    _logger.LogInformation("Authenticated silently.");
+                    _accessToken = result.AccessToken;
+                    logger.LogInformation("Authenticated silently.");
                     return true;
                 }
 
                 var interactiveResult = await _app.AcquireTokenInteractive(scopes).ExecuteAsync();
-                _logger.LogInformation("Authenticated interactively.");
+                _accessToken = interactiveResult.AccessToken;
+                logger.LogInformation("Authenticated interactively.");
                 return true;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Authentication failed.");
+                logger.LogError(ex, "Authentication failed.");
                 return false;
             }
+        }
+
+        public async Task<string> GetAccessTokenAsync()
+        {
+            if (string.IsNullOrEmpty(_accessToken))
+            {
+                await AuthenticateAsync();
+            }
+            return _accessToken!;
         }
     }
 }

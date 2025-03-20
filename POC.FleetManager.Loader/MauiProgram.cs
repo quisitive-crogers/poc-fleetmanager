@@ -14,9 +14,9 @@ namespace POC.FleetManager.Loader
            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
            .Build();
 
-            var azureAppConfigSettings = config.GetSection("AzureAppConfiguration").Get<AzureAppConfigSettings>();
-            var entraIdSettings = config.GetSection("EntraId").Get<EntraIdSettings>();
-            var webServiceSettings = config.GetSection("WebService").Get<WebServiceSettings>();
+            var azureAppConfigSettings = config.GetSection("AzureAppConfiguration").Get<AzureAppConfigSettings>()!;
+            var entraIdSettings = config.GetSection("EntraId").Get<EntraIdSettings>()!;
+            var webServiceSettings = config.GetSection("WebService").Get<WebServiceSettings>()!;
 
             var builder = MauiApp.CreateBuilder();
             builder
@@ -34,10 +34,14 @@ namespace POC.FleetManager.Loader
                 options.Connect(azureAppConfigSettings!.ConnectionString)
                        .ConfigureRefresh(refresh =>
                        {
+                           refresh.RegisterAll();
                            refresh.SetRefreshInterval(TimeSpan.FromMinutes(5));
                        });
             });
 
+            builder.Services.AddSingleton(azureAppConfigSettings);
+            builder.Services.AddSingleton(entraIdSettings);
+            builder.Services.AddSingleton(webServiceSettings);
             builder.Services.AddAzureAppConfiguration();
             builder.Services.AddSingleton<HttpClient>();
             builder.Services.AddSingleton<AuthService>();
@@ -45,9 +49,6 @@ namespace POC.FleetManager.Loader
             //builder.Services.AddSingleton<ConfigService>();
             builder.Services.AddSingleton<EventAggregator>();
             builder.Services.AddLogging();
-            //builder.Services.AddSingleton(azureAppConfigSettings);
-            //builder.Services.AddSingleton(entraIdSettings);
-            //builder.Services.AddSingleton(webServiceSettings);
 
 #if DEBUG
             builder.Logging.AddDebug();
