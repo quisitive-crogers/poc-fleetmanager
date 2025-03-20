@@ -1,10 +1,9 @@
-namespace POC.FleetManager.Extensions.VehicleReservation
+namespace POC.FleetManager.Extensions.VehicleReservation;
+
+public partial class VehicleReservationView : ContentView
 {
-    public partial class VehicleReservationView : ContentView
+    public VehicleReservationView()
     {
-        public VehicleReservationView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

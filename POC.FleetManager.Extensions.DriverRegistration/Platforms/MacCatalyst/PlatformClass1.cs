@@ -1,7 +1,6 @@
-﻿namespace POC.FleetManager.Extensions.DriverRegistration
+﻿namespace POC.FleetManager.Extensions.DriverRegistration;
+
+// All the code in this file is only included on Mac Catalyst.
+public class PlatformClass1
 {
-    // All the code in this file is only included on Mac Catalyst.
-    public class PlatformClass1
-    {
-    }
 }

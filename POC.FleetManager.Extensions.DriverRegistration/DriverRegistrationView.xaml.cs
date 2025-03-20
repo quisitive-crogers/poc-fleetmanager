@@ -1,10 +1,9 @@
-namespace POC.FleetManager.Extensions.DriverRegistration
+namespace POC.FleetManager.Extensions.DriverRegistration;
+
+public partial class DriverRegistrationView : ContentView
 {
-    public partial class DriverRegistrationView : ContentView
+    public DriverRegistrationView()
     {
-        public DriverRegistrationView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

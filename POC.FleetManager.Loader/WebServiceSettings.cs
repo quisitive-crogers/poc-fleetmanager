@@ -1,7 +1,6 @@
-namespace POC.FleetManager.Loader
+namespace POC.FleetManager.Loader;
+
+public class WebServiceSettings
 {
-    public class WebServiceSettings
-    {
-        public required string BaseUrl { get; set; }
-    }
+    public required string BaseUrl { get; set; }
 }

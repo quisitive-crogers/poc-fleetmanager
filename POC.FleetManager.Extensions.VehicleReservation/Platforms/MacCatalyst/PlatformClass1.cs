@@ -1,7 +1,6 @@
-﻿namespace POC.FleetManager.Extensions.VehicleReservation
+﻿namespace POC.FleetManager.Extensions.VehicleReservation;
+
+// All the code in this file is only included on Mac Catalyst.
+public class PlatformClass1
 {
-    // All the code in this file is only included on Mac Catalyst.
-    public class PlatformClass1
-    {
-    }
 }

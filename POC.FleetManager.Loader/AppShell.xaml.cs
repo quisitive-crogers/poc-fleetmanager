@@ -1,10 +1,9 @@
-﻿namespace POC.FleetManager.Loader
+﻿namespace POC.FleetManager.Loader;
+
+public partial class AppShell : Shell
 {
-    public partial class AppShell : Shell
+    public AppShell()
     {
-        public AppShell()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

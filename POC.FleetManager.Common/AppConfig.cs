@@ -1,7 +1,6 @@
-namespace POC.FleetManager.Common
+namespace POC.FleetManager.Common;
+
+public class AppConfig
 {
-    public class AppConfig
-    {
-        public string Environment { get; set; } = "Development";
-    }
+    public string Environment { get; set; } = "Development";
 }

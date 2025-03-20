@@ -1,50 +1,41 @@
 using System.Composition;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using POC.FleetManager.Common;
 using DbUp;
+using POC.FleetManager.Common.Events;
 
-namespace POC.FleetManager.Extensions.DriverRegistration
+namespace POC.FleetManager.Extensions.DriverRegistration;
+
+[Export(typeof(IExtension))]
+public class DriverRegistrationExtension(IConfiguration configuration, ILogger<IExtension> logger, EventAggregator eventAggregator) : ExtensionBase(configuration, logger, eventAggregator)
 {
-    [Export(typeof(IExtension))]
-    public class DriverRegistrationExtension : IExtension
+    public override string Name => "Driver Registration";
+    public override string Version => "1.0";
+
+    public override async Task Initialize()
     {
-        private readonly ILogger<IExtension> _logger;
-        private readonly IConfiguration _configuration;
+        Logger.LogInformation("Initializing Driver Registration Extension");
 
-        public DriverRegistrationExtension()
+        var connectionString = Configuration.GetConnectionString("DriverDb");
+        var upgrader = DeployChanges.To
+            .SqlDatabase(connectionString)
+            .WithScriptsEmbeddedInAssembly(System.Reflection.Assembly.GetExecutingAssembly())
+            .LogToConsole()
+            .Build();
+
+        var result = upgrader.PerformUpgrade();
+        if (!result.Successful)
         {
+            Logger.LogError(result.Error, "Failed to initialize Driver Registration database schema");
+            throw result.Error;
         }
+        Logger.LogInformation("Driver Registration database schema initialized");
 
-        public string Name => "Driver Registration";
+        await Task.Delay(5000);
 
-        public async Task Initialize(IConfiguration configuration, ILogger<IExtension> logger)
-        {
-            _configuration = configuration;
-            _logger = logger;
-            _logger.LogInformation("Initializing Driver Registration Extension");
+        var DriverData = new Dictionary<string, object> { { "DriverID", "CDE456" } };
 
-            var connectionString = _configuration.GetConnectionString("DriverDb");
-            var upgrader = DeployChanges.To
-                .SqlDatabase(connectionString)
-                .WithScriptsEmbeddedInAssembly(System.Reflection.Assembly.GetExecutingAssembly())
-                .LogToConsole()
-                .Build();
-
-            var result = upgrader.PerformUpgrade();
-            if (!result.Successful)
-            {
-                _logger.LogError(result.Error, "Failed to initialize Driver Registration database schema");
-                throw result.Error;
-            }
-            _logger.LogInformation("Driver Registration database schema initialized");
-        }
-
-        public async Task Run()
-        {
-            _logger.LogInformation("Driver Registration Extension running");
-            await Task.CompletedTask;
-        }
+        await PublishEvent(new DriverRegistrationEvent(DriverData));
     }
 }

@@ -1,7 +1,6 @@
-namespace POC.FleetManager.Common
+namespace POC.FleetManager.Common;
+
+public class AzureAppConfigSettings
 {
-    public class AzureAppConfigSettings
-    {
-        public required string ConnectionString { get; set; }
-    }
+    public required string ConnectionString { get; set; }
 }
