@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net9.0-android;net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
@@ -9,7 +9,6 @@
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
@@ -31,5 +30,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Scripts\*.sql" />
   </ItemGroup>
+
+  <Target Name="CopyToApiExtensions" AfterTargets="Build" Condition="'$(TargetFramework)' != ''" >
+    <Copy SourceFiles="$(OutDir)$(AssemblyName).dll" DestinationFolder="..\POC.FleetManager.ManagementAPI\bin\$(Configuration)\net9.0\extensions\$(AssemblyName)\$(TargetFramework)" />
+  </Target>
 </Project>
 

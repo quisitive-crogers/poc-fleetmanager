@@ -31,4 +31,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Scripts\*.sql" />
   </ItemGroup>
+
+  <Target Name="CopyToApiExtensions" AfterTargets="Build" Condition="'$(TargetFramework)' != ''" >
+    <Copy SourceFiles="$(OutDir)$(AssemblyName).dll" DestinationFolder="..\POC.FleetManager.ManagementAPI\bin\$(Configuration)\net9.0\extensions\$(AssemblyName)\$(TargetFramework)" />
+  </Target>
 </Project>
