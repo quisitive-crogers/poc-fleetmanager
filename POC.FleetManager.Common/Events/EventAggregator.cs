@@ -1,6 +1,6 @@
 namespace POC.FleetManager.Common.Events;
 
-public class EventAggregator
+public class EventAggregator : IEventAggregator
 {
     private readonly Dictionary<string, List<Func<EventData, Task>>> subscribers = [];
 
@@ -10,8 +10,8 @@ public class EventAggregator
 
         if (!hasHandlers)
         {
-            subscribers.Add(type, []);
             handlers = [];
+            subscribers.Add(type, handlers);
         }
 
         handlers!.Add(handler);

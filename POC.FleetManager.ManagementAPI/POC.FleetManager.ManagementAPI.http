@@ -1,6 +1,0 @@
-@POC.FleetManager.ManagementAPI_HostAddress = http://localhost:5222
-
-GET {{POC.FleetManager.ManagementAPI_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

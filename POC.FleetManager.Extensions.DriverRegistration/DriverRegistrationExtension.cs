@@ -8,16 +8,18 @@ using POC.FleetManager.Common.Events;
 namespace POC.FleetManager.Extensions.DriverRegistration;
 
 [Export(typeof(IExtension))]
-public class DriverRegistrationExtension(IConfiguration configuration, ILogger<IExtension> logger, EventAggregator eventAggregator) : ExtensionBase(configuration, logger, eventAggregator)
+public class DriverRegistrationExtension:ExtensionBase
 {
     public override string Name => "Driver Registration";
     public override string Version => "1.0";
 
-    public override async Task Initialize()
+    public override async void Initialize(IConfiguration configuration, ILogger<IExtension> logger, IServiceProvider serviceProvider, IEventAggregator eventAggregator)
     {
-        Logger.LogInformation("Initializing Driver Registration Extension");
+        base.Initialize(configuration, logger, serviceProvider, eventAggregator);
 
-        var connectionString = Configuration.GetConnectionString("DriverDb");
+        logger.LogInformation("Initializing Driver Registration Extension");
+
+        var connectionString = configuration.GetConnectionString("DriverDb");
         var upgrader = DeployChanges.To
             .SqlDatabase(connectionString)
             .WithScriptsEmbeddedInAssembly(System.Reflection.Assembly.GetExecutingAssembly())
@@ -27,15 +29,13 @@ public class DriverRegistrationExtension(IConfiguration configuration, ILogger<I
         var result = upgrader.PerformUpgrade();
         if (!result.Successful)
         {
-            Logger.LogError(result.Error, "Failed to initialize Driver Registration database schema");
+            logger.LogError(result.Error, "Failed to initialize Driver Registration database schema");
             throw result.Error;
         }
-        Logger.LogInformation("Driver Registration database schema initialized");
+        logger.LogInformation("Driver Registration database schema initialized");
 
         await Task.Delay(5000);
 
-        var DriverData = new Dictionary<string, object> { { "DriverID", "CDE456" } };
-
-        await PublishEvent(new DriverRegistrationEvent(DriverData));
+        await PublishEvent(new DriverRegistrationEvent(("DriverID", "CDE456")));
     }
 }

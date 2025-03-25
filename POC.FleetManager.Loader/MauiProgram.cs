@@ -18,7 +18,7 @@ public static class MauiProgram
         var webServiceSettings = config.GetSection("WebService").Get<WebServiceSettings>()!;
 
         var builder = MauiApp.CreateBuilder();
-        builder
+        builder 
             .UseMauiApp<App>()
             .ConfigureFonts(fonts =>
             {
@@ -42,10 +42,12 @@ public static class MauiProgram
         builder.Services.AddSingleton(entraIdSettings);
         builder.Services.AddSingleton(webServiceSettings);
         builder.Services.AddAzureAppConfiguration();
-        builder.Services.AddSingleton<HttpClient>();
+
+        builder.Services.AddTransient<HttpClient>();
         builder.Services.AddSingleton<AuthService>();
-        //builder.Services.AddSingleton<ExtensionService>();
-        //builder.Services.AddSingleton<ConfigService>();
+
+        builder.Services.AddSingleton<WebServiceCatalog>();
+        builder.Services.AddSingleton<ExtensionHostService>();
         builder.Services.AddSingleton<EventAggregator>();
         builder.Services.AddLogging();
 

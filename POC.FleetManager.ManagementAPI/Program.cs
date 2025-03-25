@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Identity.Web;
-using Microsoft.IdentityModel.Logging;
 using POC.FleetManager.Common;
+using POC.FleetManager.ManagementAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,7 +35,10 @@ builder.Services.AddAuthorizationBuilder()
     {
         policy.RequireScope(builder.Configuration.GetSection("AzureAd")["Scopes"]!);
     });
+
 var app = builder.Build();
+
+app.UseRequestLogging();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -44,8 +47,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-IdentityModelEventSource.ShowPII = true;
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -1,2 +1,2 @@
 ﻿namespace POC.FleetManager.Common.Events;
-public record ReservationEvent(Dictionary<string, object> Payload) : EventData(nameof(ReservationEvent), Payload);
+public record ReservationEvent(params (string, object)[] Payload) : EventData(nameof(ReservationEvent), default, Payload);
